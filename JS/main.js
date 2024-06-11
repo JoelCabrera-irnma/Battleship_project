@@ -23,11 +23,15 @@ console.log(player1.displayPlayerBoard());
 
 //Realizar un ataque del Jugador al Oponente
 console.log(player1.playerAttack(0, 0)); // Output: 'hit'
+console.log(player1.playerAttack(0, 4));
 
 console.log(player1.getTableroPlayer())
 console.log(player1.getShipsPlayer())
 
 console.log(player2.getTableroPlayer())
 
+function showCoord (){
+    player1.showCoord()
+}
 // Mostrar el tablero del oponente después del ataque
 //console.log(player1.displayOpponentBoard());

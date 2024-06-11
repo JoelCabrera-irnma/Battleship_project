@@ -5,6 +5,7 @@ class Board {
         this.size = size;
         this.grid = Array.from({ length: size }, () => Array(size).fill(null));
         this.ships = [];
+        this.registerCoord = []
     }
 
     placeShip(ship, positions) {
@@ -24,13 +25,21 @@ class Board {
     }
 
     placeShipRandomly(ship) {
-        const positions = RandomPlacement.getRandomPosition(this.grid, ship.size);
-        this.placeShip(ship, positions);
+        const savedData = JSON.parse(localStorage.getItem(`${ship.name}`));
+        if(savedData!==null){
+            this.placeShip(ship, savedData);
+        } else {
+            const positions = RandomPlacement.getRandomPosition(this.grid, ship.size);
+            localStorage.setItem(`${ship.name}`, JSON.stringify(positions));
+            this.placeShip(ship, positions);
+        }
+                
     }
     
     receiveAttack(x, y) {
         const target = this.grid[x][y];
         if (target === null) {
+            this.registerCoord.push([x,y])
             return 'miss';
         } else {
             target.hit();
@@ -48,12 +57,18 @@ class Board {
         ).join('\n');
     }
 
+
+    //Otras funciones
     displayGrid() {
         return this.grid
     }
 
     displayShips() {
         return this.ships
+    }
+
+    displayCoord (){
+        console.log(this.registerCoord)
     }
 }
 
