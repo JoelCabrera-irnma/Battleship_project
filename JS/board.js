@@ -1,4 +1,5 @@
 import RandomPlacement from './randomPlacement.js';
+import {deleteItem} from './auxiliar.js'
 
 class Board {
     constructor(size) {
@@ -47,6 +48,10 @@ class Board {
         } else {
             target.hit();
             if (target.isSunk()) {
+                //eliminar barcos de this.ships
+                deleteItem(this.ships,target.name)
+
+                this.grid[x][y] = "X";
                 return `sunk ${target.name}`;
             } else {
                 this.grid[x][y] = "X";

@@ -13,9 +13,9 @@ const ships = [
     new Ship('Destroyer', 2)
 ];
 // Colocar barcos en el tablero del Oponente
-player1.start(ships)
+player1.start(ships.map(ship => new Ship(ship.name+"1", ship.size)))
 // Colocar barcos en el tablero del Jugador
-player2.start(ships.map(ship => new Ship(ship.name, ship.size)))
+player2.start(ships.map(ship => new Ship(ship.name+"2", ship.size)))
 
 
 //Mostrar tablero Oponente
@@ -28,7 +28,13 @@ console.log(player1.playerAttack(0, 4));
 //console.log(player1.playerAttack(1, 1));
 console.log(player1.playerAttack(1, 1));
 console.log(player1.playerAttack(2, 1));
-console.log(player1.playerAttack(2, 1));
+
+console.log(player1.playerAttack(1, 2));
+console.log(player1.playerAttack(1, 3));
+console.log(player1.playerAttack(1, 7));
+console.log(player1.playerAttack(1, 4));
+
+
 
 
 console.log(player1.getTableroPlayer())
