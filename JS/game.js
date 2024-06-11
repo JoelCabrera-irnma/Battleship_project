@@ -17,7 +17,7 @@ class Player {
     }
     
     playerAttack(x, y) {
-        return this.playerBoard.receiveAttack(x, y);
+        return this.playerBoard.receiveAttack(x, y); 
     }
 
     displayPlayerBoard() {

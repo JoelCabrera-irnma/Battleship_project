@@ -39,13 +39,17 @@ class Board {
     receiveAttack(x, y) {
         const target = this.grid[x][y];
         if (target === null) {
-            this.registerCoord.push([x,y])
+            this.registerCoord.push([x,y]);
+            this.grid[x][y] = "O";
             return 'miss';
+        } else if (target === "O"||target ==="X"){
+            return "repeat shot" 
         } else {
             target.hit();
             if (target.isSunk()) {
                 return `sunk ${target.name}`;
             } else {
+                this.grid[x][y] = "X";
                 return 'hit';
             }
         }
