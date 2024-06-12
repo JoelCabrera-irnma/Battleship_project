@@ -1,7 +1,7 @@
 import Board from './board.js';
 class Player {
-    constructor(boardSize) {
-        this.playerBoard = new Board(boardSize);
+    constructor(boardSize, player) {
+        this.playerBoard = new Board(boardSize,player);
     }
 
     placePlayerShip(ship, positions) {

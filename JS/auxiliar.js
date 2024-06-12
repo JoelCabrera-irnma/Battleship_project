@@ -7,4 +7,10 @@ function deleteItem (ships, target) {
     }
 }
 
-export {deleteItem}
+function verificarVictoria (ships, player){
+    if(ships.length==0) {
+        console.log((player==1)?"Victoria jugador 2":"Victoria jugador 1")}
+    else console.log(ships)
+
+}
+export {deleteItem,verificarVictoria}

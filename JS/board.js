@@ -1,12 +1,13 @@
 import RandomPlacement from './randomPlacement.js';
-import {deleteItem} from './auxiliar.js'
+import {deleteItem, verificarVictoria} from './auxiliar.js'
 
 class Board {
-    constructor(size) {
+    constructor(size, player) {
         this.size = size;
         this.grid = Array.from({ length: size }, () => Array(size).fill(null));
         this.ships = [];
         this.registerCoord = []
+        this.player = player
     }
 
     placeShip(ship, positions) {
@@ -49,9 +50,11 @@ class Board {
             target.hit();
             if (target.isSunk()) {
                 //eliminar barcos de this.ships
-                deleteItem(this.ships,target.name)
-
+                deleteItem(this.ships,target.name);
                 this.grid[x][y] = "X";
+                //Verificar si hay un ganador
+                setTimeout(()=>verificarVictoria(this.ships,this.player),0)
+                
                 return `sunk ${target.name}`;
             } else {
                 this.grid[x][y] = "X";
