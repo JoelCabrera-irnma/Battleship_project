@@ -6,9 +6,9 @@ const player2 = new Player(10, 2);
 
 
 const ships = [
-    // new Ship('Carrier', 5),
-    // new Ship('Battleship', 4),
-    // new Ship('Cruiser', 3),
+    new Ship('Carrier', 5),
+    new Ship('Battleship', 4),
+    new Ship('Cruiser', 3),
     new Ship('Submarine', 3),
     new Ship('Destroyer', 2)
 ];
@@ -37,8 +37,7 @@ console.log(player1.playerAttack(5, 7));
 console.log(player1.playerAttack(5, 4));
 console.log(player1.playerAttack(5, 8));
 
-
-
+console.log(player1.displayPlayerBoard());
 
 
 console.log(player1.getTableroPlayer())
@@ -46,6 +45,7 @@ console.log(player1.getShipsPlayer())
 
 console.log(player2.getTableroPlayer())
 
+player1.showCoord()
 
 document.querySelector("button").addEventListener("click",clearLocalStorage)
 function clearLocalStorage (){

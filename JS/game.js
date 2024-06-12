@@ -34,7 +34,7 @@ class Player {
     }
 
     showCoord () {
-        return this.playerBoard.displayCoord()
+        return (this.playerBoard.displayCoord())
     }
 }
 

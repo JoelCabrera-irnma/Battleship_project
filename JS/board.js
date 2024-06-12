@@ -6,7 +6,7 @@ class Board {
         this.size = size;
         this.grid = Array.from({ length: size }, () => Array(size).fill(null));
         this.ships = [];
-        this.registerCoord = []
+        this.missAttackCoord = []
         this.player = player
     }
 
@@ -41,7 +41,7 @@ class Board {
     receiveAttack(x, y) {
         const target = this.grid[x][y];
         if (target === null) {
-            this.registerCoord.push([x,y]);
+            this.missAttackCoord.push([x,y]);
             this.grid[x][y] = "O";
             return 'miss';
         } else if (target === "O"||target ==="X"){
@@ -65,10 +65,20 @@ class Board {
 
     display() {
         return this.grid.map(row => 
-            row.map(cell => cell === null ? '.' : 'S').join(' ')
+            row.map(cell => cell === null ? '.' : "X" ?'x': "O"?'o':'S').join(' ')
         ).join('\n');
     }
-
+    display() {
+        return this.grid.map(row => 
+            row.map(cell => {
+                if (cell === null) return '.';
+                if (cell === 'O') return 'O';
+                if (cell === 'X') return 'X';
+                return 'S'; 
+            }).join(' ')
+        ).join('\n');
+    }
+    
 
     //Otras funciones
     displayGrid() {
@@ -80,7 +90,7 @@ class Board {
     }
 
     displayCoord (){
-        console.log(this.registerCoord)
+        console.log(this.missAttackCoord)
     }
 }
 
