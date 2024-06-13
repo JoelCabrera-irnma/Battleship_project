@@ -1,5 +1,6 @@
 import RandomPlacement from './randomPlacement.js';
 import {deleteItem, verificarVictoria} from './auxiliar.js'
+import {renderBoard,createBoard} from './doom.js'
 
 class Board {
     constructor(size, player) {
@@ -24,6 +25,8 @@ class Board {
             this.grid[x][y] = ship;
         }
         this.ships.push(ship);
+        createBoard(this.size,this.size,this.player);
+        renderBoard(this.grid,this.player)
     }
 
     placeShipRandomly(ship) {
@@ -63,11 +66,7 @@ class Board {
         }
     }
 
-    display() {
-        return this.grid.map(row => 
-            row.map(cell => cell === null ? '.' : "X" ?'x': "O"?'o':'S').join(' ')
-        ).join('\n');
-    }
+    
     display() {
         return this.grid.map(row => 
             row.map(cell => {

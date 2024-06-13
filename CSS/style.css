@@ -2,3 +2,19 @@ button{
     height: 30vh;
     width: 30vw;
 }
+
+.board {
+    display: grid;
+    gap: 1px;
+    background-color: black;
+}
+.cell {
+    width: 30px;
+    height: 30px;
+    background-color: grey;
+    text-align: center;
+}
+
+#board-container1{
+    border: red 1px solid;
+}
