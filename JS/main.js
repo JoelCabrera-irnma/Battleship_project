@@ -2,8 +2,11 @@ import Player from './game.js';
 import Ship from './ship.js';
 import addListenerAllCells from './doom.js'
 
-const player1 = new Player(10, 1);
-const player2 = new Player(10, 2);
+const players = {
+    player1: new Player(10, 1),
+    player2: new Player(10, 2)
+}
+
 
 
 const ships = [
@@ -14,39 +17,36 @@ const ships = [
     new Ship('Destroyer', 2)
 ];
 // Colocar barcos en el tablero del Oponente
-player1.start(ships.map(ship => new Ship(ship.name+"1", ship.size)))
+players.player1.start(ships.map(ship => new Ship(ship.name+"1", ship.size)))
 // Colocar barcos en el tablero del Jugador
-player2.start(ships.map(ship => new Ship(ship.name+"2", ship.size)))
+players.player2.start(ships.map(ship => new Ship(ship.name+"2", ship.size)))
 
 
 //Mostrar tablero Oponente
-console.log(player1.displayPlayerBoard());
+console.log(players.player1.displayPlayerBoard());
 
 //Realizar un ataque del Jugador al Oponente
-console.log(player1.playerAttack(0, 0)); // Output: 'hit'
-console.log(player1.playerAttack(0, 4));
-//console.log(player1.playerAttack(0, 0));
-//console.log(player1.playerAttack(1, 1));
-console.log(player1.playerAttack(1, 1));
-console.log(player1.playerAttack(2, 1));
+console.log(players.player1.playerAttack(0, 0)); // Output: 'hit'
+console.log(players.player1.playerAttack(0, 4));
+console.log(players.player1.playerAttack(1, 1));
+console.log(players.player1.playerAttack(2, 1));
+console.log(players.player1.playerAttack(1, 2));
+console.log(players.player1.playerAttack(1, 3));
+console.log(players.player1.playerAttack(1, 7));
+console.log(players.player1.playerAttack(1, 4));
+console.log(players.player1.playerAttack(5, 7));
+console.log(players.player1.playerAttack(5, 4));
+console.log(players.player1.playerAttack(5, 8));
 
-console.log(player1.playerAttack(1, 2));
-console.log(player1.playerAttack(1, 3));
-console.log(player1.playerAttack(1, 7));
-console.log(player1.playerAttack(1, 4));
-console.log(player1.playerAttack(5, 7));
-console.log(player1.playerAttack(5, 4));
-console.log(player1.playerAttack(5, 8));
-
-console.log(player1.displayPlayerBoard());
+console.log(players.player1.displayPlayerBoard());
 
 
-console.log(player1.getTableroPlayer())
-console.log(player1.getShipsPlayer())
+console.log(players.player1.getTableroPlayer())
+console.log(players.player1.getShipsPlayer())
 
-console.log(player2.getTableroPlayer())
+console.log(players.player2.getTableroPlayer())
 
-player1.showCoord()
+players.player1.showCoord()
 
 addListenerAllCells();
 
@@ -55,6 +55,13 @@ function clearLocalStorage (){
     localStorage.clear()
 }
 // Mostrar el tablero del oponente después del ataque
-//console.log(player1.displayOpponentBoard());
+//console.log(players.player1.displayOpponentBoard());
 
-export {player1,player2}
+
+// function ejecutrar(params) {
+//     const player = player[`player${params}`];
+//     player.playerAttack(9, 0);
+// }
+// ejecutrar("1")
+
+export {players}

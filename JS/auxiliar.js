@@ -13,4 +13,28 @@ function verificarVictoria (ships, player){
     else console.log(ships)
 
 }
+
+function findValue(playerTurn) {
+    for (let player in playerTurn) {
+        if (playerTurn[player] === true) {
+            return player;
+        }
+    }
+    return null; // Retorna null si no se encuentra coincidencia
+}
+
+function findValue2(playerTurn) {
+    for (let player in playerTurn) {
+        if (playerTurn[player] === false) {
+            return player;
+        }
+    }
+    return null; // Retorna null si no se encuentra coincidencia
+}
+
+function cutt(arg) {
+    const ele = arg.split(" ");
+    return ele[1]
+}
 export {deleteItem,verificarVictoria}
+export {findValue,findValue2,cutt} 

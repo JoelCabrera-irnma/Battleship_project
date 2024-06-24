@@ -1,4 +1,10 @@
-import {player1, player2} from './main.js'
+import {players} from './main.js'
+import {findValue,findValue2,cutt} from './auxiliar.js'
+
+const turnosPlayer = {
+    "Player 1":true,
+    "Player 2":false
+}
 
 function renderBoard(board,player) {
     board.map((row,X) => 
@@ -21,7 +27,8 @@ function createBoard(rows, cols, player) {
     boardContainer.innerHTML = ''; // Limpiar el contenido previo
 
     const board = document.createElement(`div`);
-    board.classList.add(`board`);
+    board.classList.add(`Player`);
+    board.classList.add(`${player}`);
     board.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
     board.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
 
@@ -43,19 +50,53 @@ function changeBackground(cell,simbol) {
     if(simbol=="X"){cell.style.backgroundColor = 'red'}
 }
 
-function addListenerAllCells(params) {
+function registroTurnos(turno) {
+    if(turnosPlayer[turno]==true){
+        alert("Correcto")
+        return true
+    } else {
+        alert(`NO permitido turno Jugador ${findValue(turnosPlayer)}`);
+        return false
+    }
+}
+function addListenerAllCells() {
     let cells = document.querySelectorAll(".cell");
     Array.from(cells).map(cell => {
         cell.addEventListener('click', function () {
-           let attri = cell.attributes;
-           const obj = attri[1].value
-           const ok = obj.split("-")
-           console.log(ok[0]-1);
-           console.log(ok[1]-1);
+               
+            let parent = cell.parentNode;
+            let pAtt = parent.attributes
+            let valuepAtt = pAtt[0].value
+            console.log(valuepAtt)
 
-           player1.playerAttack(ok[0]-1,ok[1]-1)
+            const turno = registroTurnos(valuepAtt);
+
+            let attri = cell.attributes;
+            const obj = attri[1].value
+            const ok = obj.split("-")
+            console.log(ok[0]-1);
+            console.log(ok[1]-1);
+
+            asignarTurno(turno,ok,valuepAtt);
+            //player1.playerAttack(ok[0]-1,ok[1]-1)
         });
 })
 };
+
+function asignarTurno(turno,ok,key) {
+    if(turno==true){
+        const keyC = cutt(key);
+        const player = players[`player${keyC}`];
+        player.playerAttack(ok[0]-1,ok[1]-1);
+        turnosPlayer[findValue2(turnosPlayer)] = true;
+        turnosPlayer[key] = false;
+    } else {
+        return
+    }
+}
+
+document.querySelector("#show").addEventListener("click",()=>{
+    console.log(turnosPlayer["Player 2"])
+})
 export  {renderBoard,createBoard,selectorCasilla}
 export default addListenerAllCells
