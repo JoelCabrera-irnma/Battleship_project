@@ -1,6 +1,9 @@
+:root{
+    --gordina: rgb(75, 95, 43);
+}
 button{
-    height: 30vh;
-    width: 30vw;
+    height: 10vh;
+    width: 15vw;
 }
 
 .board {
@@ -11,10 +14,22 @@ button{
 .cell {
     width: 30px;
     height: 30px;
-    background-color: grey;
+    background-color: rgb(187, 173, 173);
     text-align: center;
+    font-weight: bolder;
+    font-size: 18px;
 }
 
+.mainConteiner{
+    display: grid;
+    gap: 10px;
+}
 #board-container1{
-    border: red 1px solid;
+    border: rgb(0, 183, 255) 1px solid;
+    color:var(--gordina);
+}
+
+#board-container2 .cell{
+    color:var(--gordina);
+    background-color: rgb(225, 245, 225);
 }

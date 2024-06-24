@@ -1,6 +1,6 @@
 import RandomPlacement from './randomPlacement.js';
 import {deleteItem, verificarVictoria} from './auxiliar.js'
-import {renderBoard,createBoard} from './doom.js'
+import {renderBoard,createBoard,selectorCasilla} from './doom.js'
 
 class Board {
     constructor(size, player) {
@@ -46,6 +46,7 @@ class Board {
         if (target === null) {
             this.missAttackCoord.push([x,y]);
             this.grid[x][y] = "O";
+            selectorCasilla(x,y,"O",this.player)
             return 'miss';
         } else if (target === "O"||target ==="X"){
             return "repeat shot" 
@@ -55,12 +56,14 @@ class Board {
                 //eliminar barcos de this.ships
                 deleteItem(this.ships,target.name);
                 this.grid[x][y] = "X";
+                selectorCasilla(x,y,"X",this.player)
                 //Verificar si hay un ganador
                 setTimeout(()=>verificarVictoria(this.ships,this.player),0)
                 
                 return `sunk ${target.name}`;
             } else {
                 this.grid[x][y] = "X";
+                selectorCasilla(x,y,"X",this.player)
                 return 'hit';
             }
         }

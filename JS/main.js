@@ -1,5 +1,6 @@
-import Player from './game.js'
-import Ship from './ship.js'
+import Player from './game.js';
+import Ship from './ship.js';
+import addListenerAllCells from './doom.js'
 
 const player1 = new Player(10, 1);
 const player2 = new Player(10, 2);
@@ -47,9 +48,13 @@ console.log(player2.getTableroPlayer())
 
 player1.showCoord()
 
+addListenerAllCells();
+
 document.querySelector("button").addEventListener("click",clearLocalStorage)
 function clearLocalStorage (){
     localStorage.clear()
 }
 // Mostrar el tablero del oponente después del ataque
 //console.log(player1.displayOpponentBoard());
+
+export {player1,player2}

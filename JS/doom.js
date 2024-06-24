@@ -1,3 +1,5 @@
+import {player1, player2} from './main.js'
+
 function renderBoard(board,player) {
     board.map((row,X) => 
         row.map((cell,Y) => {
@@ -10,7 +12,8 @@ function renderBoard(board,player) {
 function selectorCasilla(filaX, columnY, simbol, player) {
     const board = document.querySelector(`#board-container${player}`);
     const cell = board.querySelector(`.cell[data-position='${filaX+1}-${columnY+1}']`);
-    cell.textContent = simbol
+    cell.textContent = simbol;
+    changeBackground(cell,simbol)
 }
 
 function createBoard(rows, cols, player) {
@@ -35,5 +38,24 @@ function createBoard(rows, cols, player) {
     boardContainer.appendChild(board);
 }
 
+function changeBackground(cell,simbol) {
+    if(simbol=="O"){cell.style.backgroundColor = 'green'};
+    if(simbol=="X"){cell.style.backgroundColor = 'red'}
+}
 
-export  {renderBoard,createBoard}
+function addListenerAllCells(params) {
+    let cells = document.querySelectorAll(".cell");
+    Array.from(cells).map(cell => {
+        cell.addEventListener('click', function () {
+           let attri = cell.attributes;
+           const obj = attri[1].value
+           const ok = obj.split("-")
+           console.log(ok[0]-1);
+           console.log(ok[1]-1);
+
+           player1.playerAttack(ok[0]-1,ok[1]-1)
+        });
+})
+};
+export  {renderBoard,createBoard,selectorCasilla}
+export default addListenerAllCells
