@@ -72,13 +72,11 @@ function addListenerAllCells() {
             const turno = registroTurnos(valuepAtt);
 
             let attri = cell.attributes;
-            const obj = attri[1].value
-            const ok = obj.split("-")
+            const ok = attri[1].value.split("-")
             console.log(ok[0]-1);
             console.log(ok[1]-1);
 
             asignarTurno(turno,ok,valuepAtt);
-            //player1.playerAttack(ok[0]-1,ok[1]-1)
         });
 })
 };
@@ -87,9 +85,12 @@ function asignarTurno(turno,ok,key) {
     if(turno==true){
         const keyC = cutt(key);
         const player = players[`player${keyC}`];
-        player.playerAttack(ok[0]-1,ok[1]-1);
-        turnosPlayer[findValue2(turnosPlayer)] = true;
-        turnosPlayer[key] = false;
+        const selectCell = player.playerAttack(ok[0]-1,ok[1]-1);
+        if(selectCell=="repeat shot"){return alert("Repetir tiro")};
+        if(selectCell=="miss"){
+            turnosPlayer[findValue2(turnosPlayer)] = true;
+            turnosPlayer[key] = false;
+        }
     } else {
         return
     }
