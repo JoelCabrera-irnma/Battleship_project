@@ -91,6 +91,7 @@ function addListenerAllCells() {
 
 function asignarTurno(turno,ok,key) {
     if(turno==true){
+        console.log(ok)
         const keyC = cutt(key);
         const player = players[`player${keyC}`]; //Empleamos el obj "player" de main.js
         const selectCell = player.playerAttack(ok[0]-1,ok[1]-1); //Empleamos su metodo "playerAttack"
@@ -103,11 +104,36 @@ function asignarTurno(turno,ok,key) {
         if(selectCell=="miss"){
             turnosPlayer[findValue2(turnosPlayer)] = true;
             turnosPlayer[key] = false;
-            setTimeout(()=>{hiddenShowBoard(turnosPlayer)},2000)
+            setTimeout(()=>{
+                hiddenShowBoard(turnosPlayer);
+                //Seccion a revisar (funcion para el juego automatico por parte de PC)
+                const item = document.querySelector('.header');
+                const button = document.createElement('button')
+                if(!turnosPlayer['Player 1']){
+                    button.textContent = "Jugar PC"
+                    button.classList.add('buttonPc');
+                    item.appendChild(button);
+                    button.addEventListener('click',jugarPC)
+                } else {
+                    document.querySelector('.buttonPc').remove()
+                }
+            },2000)
         }
     } else {
         return
     }
+}
+
+//Funcion a revisar (tiene algun tipo de error al ejecuar el metodo hit() de las clases Players)
+function jugarPC() {
+    const coordX = randomNumber(players.player2.returnSize());
+    const coordY = randomNumber(players.player2.returnSize());
+    const obj = [coordX,coordY];
+    asignarTurno(true,obj,"Player 2")
+}
+
+function randomNumber(size) {
+    return Math.floor(Math.random() * size-1);
 }
 
 export  {renderBoard,createBoard,selectorCasilla};

@@ -2,6 +2,7 @@ import Board from './board.js';
 class Player {
     constructor(boardSize, player) {
         this.playerBoard = new Board(boardSize,player);
+        this.boardSize = boardSize
     }
 
     placeShipsAutomatically(board, ships) {
@@ -24,6 +25,9 @@ class Player {
         return this.playerBoard.clearAll();
     }
 
+    returnSize() {
+        return this.boardSize
+    }
     //OTROS
     getTableroPlayer(){
         return this.playerBoard.displayGrid()

@@ -12,12 +12,12 @@ class Board {
     }
 
     placeShip(ship, positions) {
-        for (let position of positions) {
-            const [x, y] = position;
-            if (this.grid[x][y] !== null) {
-                throw new Error('Invalid position: a ship is already placed here.');
-            }
-        }
+        // for (let position of positions) {
+        //     const [x, y] = position;
+        //     if (this.grid[x][y] !== null) {
+        //         throw new Error('Invalid position: a ship is already placed here.');
+        //     }
+        // }
 
         ship.setPosition(positions);
         for (let position of positions) {
@@ -31,7 +31,7 @@ class Board {
 
     placeShipRandomly(ship) {
         const savedData = JSON.parse(localStorage.getItem(`${ship.name}`));
-        if(savedData!==null){
+        if(savedData!==null&&savedData[0]<this.size&&savedData[1]<this.size){
             this.placeShip(ship, savedData);
         } else {
             const positions = RandomPlacement.getRandomPosition(this.grid, ship.size);
