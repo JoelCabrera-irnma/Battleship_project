@@ -1,5 +1,5 @@
 import {players} from './main.js'
-import {findValue,findValue2,cutt} from './auxiliar.js'
+import {findValue,findValue2,cutt,hiddenShowBoard} from './auxiliar.js'
 
 const turnosPlayer = {
     "Player 1":true,
@@ -52,7 +52,7 @@ function changeBackground(cell,simbol) {
 
 function registroTurnos(turno) {
     if(turnosPlayer[turno]==true){
-        alert("Correcto")
+        //alert("Correcto")
         return true
     } else {
         alert(`NO permitido turno Jugador ${findValue(turnosPlayer)}`);
@@ -67,19 +67,19 @@ function addListenerAllCells() {
             let parent = cell.parentNode;
             let pAtt = parent.attributes
             let valuepAtt = pAtt[0].value
-            console.log(valuepAtt)
 
             const turno = registroTurnos(valuepAtt);
 
             let attri = cell.attributes;
             const ok = attri[1].value.split("-")
-            console.log(ok[0]-1);
-            console.log(ok[1]-1);
-
+  
             asignarTurno(turno,ok,valuepAtt);
+            
         });
 })
+    hiddenShowBoard(turnosPlayer)
 };
+
 
 function asignarTurno(turno,ok,key) {
     if(turno==true){
@@ -90,6 +90,7 @@ function asignarTurno(turno,ok,key) {
         if(selectCell=="miss"){
             turnosPlayer[findValue2(turnosPlayer)] = true;
             turnosPlayer[key] = false;
+            setTimeout(()=>{hiddenShowBoard(turnosPlayer)},6000)
         }
     } else {
         return

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ocultar Div con Click</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+        #myDiv{
+            width: 200px;
+            height: 100px;
+            background-color: lightblue;
+            padding: 20px;
+            border: 2px solid blue;
+        }
+        .axe{
+            border: 2px green dotted;
+        }
+    </style>
+</head>
+<body>
+    <div id="myDiv">
+        <div class="axe 1">
+            <button class="pen">Este es el contenido del div. Haz clic para ocultarlo.</button>
+        </div>
+    </div>
+
+    <script >
+document.addEventListener("DOMContentLoaded", function () {
+    const myDiv = document.getElementById("myDiv");
+
+    myDiv.addEventListener("click", function () {
+        // Alterna el contenido del div entre el texto original y una cadena vacía
+        if (myDiv.textContent.trim() !== "") {
+            myDiv.dataset.originalContent = myDiv.textContent;
+            myDiv.textContent = "";
+        } else {
+            myDiv.textContent = myDiv.dataset.originalContent;
+        }
+    });
+});
+
+    </script>
+</body>
+</html>

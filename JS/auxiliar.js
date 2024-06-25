@@ -36,5 +36,25 @@ function cutt(arg) {
     const ele = arg.split(" ");
     return ele[1]
 }
+
+function hiddenShowBoard(turnosPlayer) {
+    for (let item in turnosPlayer) {
+        const select = document.querySelector(`[class="${item}"]`);
+        const nodeCell = select.querySelectorAll(".cell");
+
+        if (turnosPlayer[item] === true) {
+            nodeCell.forEach(cell => {
+                if (!cell.dataset.originalContent) {
+                    cell.dataset.originalContent = cell.textContent;
+                }
+                cell.textContent = "";
+            });
+        } else {
+            nodeCell.forEach(cell => {
+                cell.textContent = cell.dataset.originalContent || cell.textContent;
+            });
+        }
+    }
+}
 export {deleteItem,verificarVictoria}
-export {findValue,findValue2,cutt} 
+export {findValue,findValue2,cutt,hiddenShowBoard} 
