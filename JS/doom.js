@@ -91,7 +91,7 @@ function addListenerAllCells() {
 
 function asignarTurno(turno,ok,key) {
     if(turno==true){
-        console.log(ok)
+        //console.log(ok)
         const keyC = cutt(key);
         const player = players[`player${keyC}`]; //Empleamos el obj "player" de main.js
         const selectCell = player.playerAttack(ok[0]-1,ok[1]-1); //Empleamos su metodo "playerAttack"
@@ -129,11 +129,12 @@ function jugarPC() {
     const coordX = randomNumber(players.player2.returnSize());
     const coordY = randomNumber(players.player2.returnSize());
     const obj = [coordX,coordY];
+    console.log(obj)
     asignarTurno(true,obj,"Player 2")
 }
 
 function randomNumber(size) {
-    return Math.floor(Math.random() * size-1);
+    return Math.floor(Math.random() * size)+1;
 }
 
 export  {renderBoard,createBoard,selectorCasilla};
