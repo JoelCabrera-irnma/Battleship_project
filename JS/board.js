@@ -81,6 +81,11 @@ class Board {
         ).join('\n');
     }
     
+    clearGrid() {
+        this.grid = this.grid.map(subarray => subarray.map(() => null));
+        console.log("VALOR")
+        console.log(this.grid )
+    }
 
     //Otras funciones
     displayGrid() {

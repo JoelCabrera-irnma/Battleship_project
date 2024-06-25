@@ -16,11 +16,13 @@ const ships = [
     new Ship('Submarine', 3),
     new Ship('Destroyer', 2)
 ];
-// Colocar barcos en el tablero del Oponente
-players.player1.start(ships.map(ship => new Ship(ship.name+"1", ship.size)))
-// Colocar barcos en el tablero del Jugador
-players.player2.start(ships.map(ship => new Ship(ship.name+"2", ship.size)))
-
+function inicio() {
+    // Colocar barcos en el tablero del Oponente
+    players.player1.start(ships.map(ship => new Ship(ship.name+"1", ship.size)))
+    // Colocar barcos en el tablero del Jugador
+    players.player2.start(ships.map(ship => new Ship(ship.name+"2", ship.size)))
+}
+inicio();
 
 //Mostrar tablero Oponente
 console.log(players.player1.displayPlayerBoard());
@@ -52,16 +54,11 @@ addListenerAllCells();
 
 document.querySelector("button").addEventListener("click",clearLocalStorage)
 function clearLocalStorage (){
-    localStorage.clear()
+    localStorage.clear();
+    players.player1.clearBoard()
+    players.player2.clearBoard()
+    inicio();
+    addListenerAllCells();
+    
 }
-// Mostrar el tablero del oponente después del ataque
-//console.log(players.player1.displayOpponentBoard());
-
-
-// function ejecutrar(params) {
-//     const player = player[`player${params}`];
-//     player.playerAttack(9, 0);
-// }
-// ejecutrar("1")
-
 export {players}

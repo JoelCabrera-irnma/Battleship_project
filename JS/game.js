@@ -24,7 +24,11 @@ class Player {
         return this.playerBoard.display();
     }
 
-    //otros
+    clearBoard() {
+        return this.playerBoard.clearGrid()
+    }
+
+    //OTROS
     getTableroPlayer(){
         return this.playerBoard.displayGrid()
     }
