@@ -84,21 +84,21 @@ function addListenerAllCells() {
 function asignarTurno(turno,ok,key) {
     if(turno==true){
         const keyC = cutt(key);
-        const player = players[`player${keyC}`];
-        const selectCell = player.playerAttack(ok[0]-1,ok[1]-1);
+        const player = players[`player${keyC}`]; //Empleamos el obj "player" de main.js
+        const selectCell = player.playerAttack(ok[0]-1,ok[1]-1); //Empleamos su metodo "playerAttack"
+        console.log(selectCell);
         if(selectCell=="repeat shot"){return alert("Repetir tiro")};
+        if(selectCell=="Victoria"){alert(`Hay un ganador ${key}`)};
         if(selectCell=="miss"){
             turnosPlayer[findValue2(turnosPlayer)] = true;
             turnosPlayer[key] = false;
-            setTimeout(()=>{hiddenShowBoard(turnosPlayer)},6000)
+            setTimeout(()=>{hiddenShowBoard(turnosPlayer)},2000)
         }
     } else {
         return
     }
 }
 
-document.querySelector("#show").addEventListener("click",()=>{
-    console.log(turnosPlayer["Player 2"])
-})
+
 export  {renderBoard,createBoard,selectorCasilla}
 export default addListenerAllCells

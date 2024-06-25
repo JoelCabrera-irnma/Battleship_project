@@ -25,7 +25,7 @@ class Player {
     }
 
     clearBoard() {
-        return this.playerBoard.clearGrid()
+        return this.playerBoard.clearAll();
     }
 
     //OTROS

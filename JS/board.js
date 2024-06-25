@@ -58,8 +58,7 @@ class Board {
                 this.grid[x][y] = "X";
                 selectorCasilla(x,y,"X",this.player)
                 //Verificar si hay un ganador
-                setTimeout(()=>verificarVictoria(this.ships,this.player),0)
-                
+                if(verificarVictoria(this.ships,this.player))return "Victoria"
                 return `sunk ${target.name}`;
             } else {
                 this.grid[x][y] = "X";
@@ -69,7 +68,6 @@ class Board {
         }
     }
 
-    
     display() {
         return this.grid.map(row => 
             row.map(cell => {
@@ -81,10 +79,10 @@ class Board {
         ).join('\n');
     }
     
-    clearGrid() {
+    clearAll() {
         this.grid = this.grid.map(subarray => subarray.map(() => null));
-        console.log("VALOR")
-        console.log(this.grid )
+        this.ships = [];
+        this.missAttackCoord = [];
     }
 
     //Otras funciones

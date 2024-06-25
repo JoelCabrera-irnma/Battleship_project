@@ -10,9 +10,9 @@ const players = {
 
 
 const ships = [
-    new Ship('Carrier', 5),
-    new Ship('Battleship', 4),
-    new Ship('Cruiser', 3),
+    // new Ship('Carrier', 5),
+    // new Ship('Battleship', 4),
+    // new Ship('Cruiser', 3),
     new Ship('Submarine', 3),
     new Ship('Destroyer', 2)
 ];
@@ -61,4 +61,8 @@ function clearLocalStorage (){
     addListenerAllCells();
     
 }
+
+document.querySelector("#show").addEventListener("click",()=>{
+    console.log(players.player2.getShipsPlayer())
+})
 export {players}

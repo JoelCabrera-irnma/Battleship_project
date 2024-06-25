@@ -12,10 +12,23 @@ button{
     justify-content: space-evenly;
 }
 
+.Player {
+    display: grid;
+    gap: 1px;
+    background-color: black; 
+}
 
-#board-container1{
-    border: rgb(0, 183, 255) 1px solid;
+.cell {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 18px;
+}
+
+#board-container1 .cell{
     color:var(--gordina);
+    background-color: rgb(217, 243, 166)
 }
 
 #board-container2 .cell{
@@ -23,21 +36,4 @@ button{
     background-color: rgb(225, 245, 225);
 }
 
-.Player {
-    display: grid;
-    gap: 1px;
-    background-color: black;
-}
-.cell {
-    width: 40px;
-    height: 40px;
-    background-color: rgb(187, 173, 173);
-    text-align: center;
-    font-weight: bolder;
-    font-size: 18px;
-}
-
-.hidden {
-    display: none;
-}
 
