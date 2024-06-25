@@ -85,7 +85,7 @@ class Board {
         this.missAttackCoord = [];
     }
 
-    //Otras funciones
+    //OTROS METODOS
     displayGrid() {
         return this.grid
     }

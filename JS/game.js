@@ -4,10 +4,6 @@ class Player {
         this.playerBoard = new Board(boardSize,player);
     }
 
-    // placePlayerShip(ship, positions) {
-    //     this.playerBoard.placeShip(ship, positions);
-    // }
-
     placeShipsAutomatically(board, ships) {
         ships.forEach(ship => board.placeShipRandomly(ship));
     }

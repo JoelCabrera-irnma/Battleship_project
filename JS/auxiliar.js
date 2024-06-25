@@ -9,9 +9,8 @@ function deleteItem (ships, target) {
 
 function verificarVictoria (ships, player){
     if(ships.length==0) {
-        return true }//console.log((player==1)?"Victoria jugador 2":"Victoria jugador 1")}
+        return true }
     else console.log(ships)
-
 }
 
 function findValue(playerTurn) {
@@ -56,5 +55,16 @@ function hiddenShowBoard(turnosPlayer) {
         }
     }
 }
+
+function contExp(params) {
+    const item = document.querySelector(".mainConteiner");
+    if(item.style.display === 'flex'){
+        item.style.display = 'none'
+    } else {
+        item.style.display = 'flex'
+    }
+}
+
 export {deleteItem,verificarVictoria}
-export {findValue,findValue2,cutt,hiddenShowBoard} 
+export {findValue,findValue2,cutt,hiddenShowBoard,contExp} 
+export default contExp

@@ -1,25 +1,9 @@
 import {players} from './main.js'
-import {findValue,findValue2,cutt,hiddenShowBoard} from './auxiliar.js'
+import {findValue,findValue2,cutt,hiddenShowBoard,contExp} from './auxiliar.js'
 
 const turnosPlayer = {
     "Player 1":true,
     "Player 2":false
-}
-
-function renderBoard(board,player) {
-    board.map((row,X) => 
-        row.map((cell,Y) => {
-            if (cell === null) selectorCasilla (X,Y,'.',player);
-            
-            else selectorCasilla (X,Y,'S',player); 
-        }))
-}
-
-function selectorCasilla(filaX, columnY, simbol, player) {
-    const board = document.querySelector(`#board-container${player}`);
-    const cell = board.querySelector(`.cell[data-position='${filaX+1}-${columnY+1}']`);
-    cell.textContent = simbol;
-    changeBackground(cell,simbol)
 }
 
 function createBoard(rows, cols, player) {
@@ -41,8 +25,22 @@ function createBoard(rows, cols, player) {
             board.appendChild(cell);
         }
     }
-
     boardContainer.appendChild(board);
+}
+function renderBoard(board,player) {
+    board.map((row,X) => 
+        row.map((cell,Y) => {
+            if (cell === null) selectorCasilla (X,Y,'.',player);
+            
+            else selectorCasilla (X,Y,'S',player); 
+        }))
+}
+
+function selectorCasilla(filaX, columnY, simbol, player) {
+    const board = document.querySelector(`#board-container${player}`);
+    const cell = board.querySelector(`.cell[data-position='${filaX+1}-${columnY+1}']`);
+    cell.textContent = simbol;
+    changeBackground(cell,simbol)
 }
 
 function changeBackground(cell,simbol) {
@@ -59,7 +57,17 @@ function registroTurnos(turno) {
         return false
     }
 }
+function displayTurno(value) {
+    const selector = document.querySelector("span");
+    const data = findValue(turnosPlayer);
+    selector.textContent = `Turno de ${data}`;
+    if(value==true){
+        selector.textContent = "JUEGO FINALIZADO";
+        contExp();} 
+}
+
 function addListenerAllCells() {
+    displayTurno();
     let cells = document.querySelectorAll(".cell");
     Array.from(cells).map(cell => {
         cell.addEventListener('click', function () {
@@ -73,8 +81,8 @@ function addListenerAllCells() {
             let attri = cell.attributes;
             const ok = attri[1].value.split("-")
   
-            asignarTurno(turno,ok,valuepAtt);
-            
+            const data = asignarTurno(turno,ok,valuepAtt);
+            displayTurno(data);
         });
 })
     hiddenShowBoard(turnosPlayer)
@@ -88,7 +96,10 @@ function asignarTurno(turno,ok,key) {
         const selectCell = player.playerAttack(ok[0]-1,ok[1]-1); //Empleamos su metodo "playerAttack"
         console.log(selectCell);
         if(selectCell=="repeat shot"){return alert("Repetir tiro")};
-        if(selectCell=="Victoria"){alert(`Hay un ganador ${key}`)};
+        if(selectCell=="Victoria"){
+            alert(`Hay un ganador ${key}`);
+            return true
+        };
         if(selectCell=="miss"){
             turnosPlayer[findValue2(turnosPlayer)] = true;
             turnosPlayer[key] = false;
@@ -99,6 +110,5 @@ function asignarTurno(turno,ok,key) {
     }
 }
 
-
-export  {renderBoard,createBoard,selectorCasilla}
-export default addListenerAllCells
+export  {renderBoard,createBoard,selectorCasilla};
+export default addListenerAllCells;

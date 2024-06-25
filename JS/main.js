@@ -1,13 +1,12 @@
 import Player from './game.js';
 import Ship from './ship.js';
 import addListenerAllCells from './doom.js'
+import contExp from './auxiliar.js'
 
 const players = {
     player1: new Player(10, 1),
     player2: new Player(10, 2)
 }
-
-
 
 const ships = [
     // new Ship('Carrier', 5),
@@ -59,10 +58,11 @@ function clearLocalStorage (){
     players.player2.clearBoard()
     inicio();
     addListenerAllCells();
-    
+    contExp();
 }
 
 document.querySelector("#show").addEventListener("click",()=>{
     console.log(players.player2.getShipsPlayer())
 })
+
 export {players}
