@@ -58,7 +58,7 @@ function hiddenShowBoard(turnosPlayer) {
 
 function contExp(params) {
     const item = document.querySelector(".mainConteiner");
-    if(item.style.display === 'flex'){
+    if(params){
         item.style.display = 'none'
     } else {
         item.style.display = 'flex'

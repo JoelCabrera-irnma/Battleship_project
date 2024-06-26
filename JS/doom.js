@@ -63,7 +63,7 @@ function displayTurno(value) {
     selector.textContent = `Turno de ${data}`;
     if(value==true){
         selector.textContent = "JUEGO FINALIZADO";
-        contExp();} 
+        contExp(true);} 
 }
 
 function addListenerAllCells() {
@@ -91,12 +91,11 @@ function addListenerAllCells() {
 
 function asignarTurno(turno,ok,key) {
     if(turno==true){
-        //console.log(ok)
         const keyC = cutt(key);
         const player = players[`player${keyC}`]; //Empleamos el obj "player" de main.js
         const selectCell = player.playerAttack(ok[0]-1,ok[1]-1); //Empleamos su metodo "playerAttack"
         console.log(selectCell);
-        if(selectCell=="repeat shot"){return alert("Repetir tiro")};
+        if(selectCell=="repeat shot"){return "repeat"};//alert("Repetir tiro")
         if(selectCell=="Victoria"){
             alert(`Hay un ganador ${key}`);
             return true
@@ -106,7 +105,6 @@ function asignarTurno(turno,ok,key) {
             turnosPlayer[key] = false;
             setTimeout(()=>{
                 hiddenShowBoard(turnosPlayer);
-                //Seccion a revisar (funcion para el juego automatico por parte de PC)
                 const item = document.querySelector('.header');
                 const button = document.createElement('button')
                 if(!turnosPlayer['Player 1']){
@@ -124,13 +122,14 @@ function asignarTurno(turno,ok,key) {
     }
 }
 
-//Funcion a revisar (tiene algun tipo de error al ejecuar el metodo hit() de las clases Players)
 function jugarPC() {
     const coordX = randomNumber(players.player2.returnSize());
     const coordY = randomNumber(players.player2.returnSize());
     const obj = [coordX,coordY];
     console.log(obj)
-    asignarTurno(true,obj,"Player 2")
+    const value = asignarTurno(true,obj,"Player 2");
+    displayTurno(value);
+    if(value=="repeat"){jugarPC()}
 }
 
 function randomNumber(size) {
